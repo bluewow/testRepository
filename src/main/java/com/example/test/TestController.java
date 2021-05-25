@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 @Api(tags = {"테스트 컨트롤러"})
 @RequiredArgsConstructor
@@ -43,5 +46,14 @@ public class TestController {
     public Test test3() {
         Test test = new Test("a", "b");
         return test;
+    }
+
+    @GetMapping("/test/response")
+    public List<UserVo> test4() {
+        List<UserVo> userVoList = IntStream.range(0, 10)
+                .mapToObj(i -> new UserVo("userId", "test"))
+                .collect(Collectors.toList());
+
+        return userVoList;
     }
 }
