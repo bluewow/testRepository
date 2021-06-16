@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  db:
+    image: postgres
+    container_name: postgresql
+    ports:
+      - 10009:5432
+    environment:
+      POSTGRES_USERNAME: "root"
+      POSTGRES_PASSWORD: "password"
+    volumes:
+      - "./src/main/schema.sql:/docker-entrypoint-initdb.d/schema.sql"
+#      - "./src/main/data.sql:/docker-entrypoint-initdb.d/data.sql"
+

@@ -18,6 +18,7 @@ import java.util.stream.IntStream;
 @RestController
 public class TestController {
     private final TestService testService;
+    private final UserRepository userRepository;
 
     @ApiOperation("테스트")
     @GetMapping("/test")
@@ -55,5 +56,12 @@ public class TestController {
                 .collect(Collectors.toList());
 
         return userVoList;
+    }
+
+    @GetMapping("/test/null")
+    public void test5(String name) {
+        User user = userRepository.findByName(name);
+
+        System.out.println(user);
     }
 }
